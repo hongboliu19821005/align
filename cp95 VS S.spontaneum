@@ -18,7 +18,27 @@ module purge
 module load bwa
 bwa index Sspon.HiC_chr_asm.fasta>  #<inside> is the content of sbatch_index_spotaneum file
 $sbatch sbatch_index_spotaneum       #construct five index files(bwt pac anna mb sa)#
+                                     #construct a new sbatch file <the following content>,file name:sbatch_bwa_align_SRR4035457_1_Spo.fastq#
+<#!/bin/bash
+#SBATCH --job-name=align
+#SBATCH --mail-type=END,FAIL
+#SBATCH --mail-user=hongbo.liu@ufl.edu
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=10gb
+#SBATCH --time=160:00:00
+pwd; hostname; date
+env
+module purge
+module load bwa
+bwa mem Sspon.HiC_chr_asm.fasta SRR4035457_1.fastq > bwa_alncp95_spo.sam   >
+$sbatch sbatch_bwa_align_SRR4035457_1_Spo.fastq
+$module load samtools
+$samtools view  -bS -1 bwa_alncp95_spo.sam > bwa_alncp95_Sspo.bam
+$samtools stats bwa_alncp95_Sspo.bam > alncp95_Sspon.txt
 $
+
 
 
 
