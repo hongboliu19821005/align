@@ -1,0 +1,27 @@
+$module load ufrc
+$srundev --time=60 --ntasks=1 --mem=4gb
+$awk '{if(NR%4 == 1){print ">" substr($0, 2)}}{if(NR%4 == 2){print}}' SRR4035457_1.fastq >SRR4035457_1.fasta
+$module load bwa
+#construct index file#
+<#!/bin/bash
+#SBATCH --job-name=align
+#SBATCH --mail-type=END,FAIL
+#SBATCH --mail-user=hongbo.liu@ufl.edu
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=10gb
+#SBATCH --time=160:00:00
+pwd; hostname; date
+env
+module purge
+module load bwa
+bwa index Sspon.HiC_chr_asm.fasta>  #<inside> is the content of sbatch_index_spotaneum file
+$sbatch sbatch_index_spotaneum       #construct five index files(bwt pac anna mb sa)#
+$
+
+
+
+
+
+
