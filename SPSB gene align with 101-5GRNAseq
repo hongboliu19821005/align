@@ -1,0 +1,1 @@
+$grep AS:i:0 G101_5G3.sam > G101_5G3.fastq         #提取G101_5G3.sam文件中比对上的序列，然后以fastaq的格式输出。
