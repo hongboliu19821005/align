@@ -12,6 +12,6 @@ env
 module purge
 module load bowtie2
 bowtie2 -x /ufrc/wang/hongbo.liu/raw_data/totaldna_cdna.index --end-to-end -D 20 -R 3 -N 0 -L 20 -i S,1,0.50  -1 /ufrc/wang/hongbo.liu/raw_data/G101_5G2_1.fq -2 /ufrc/wang/hongbo.liu/raw_data/G101_5G2_2.fq -S G101_5G2.sam
-$
+$samtools view -bS -1 G101_5G2.sam > G101_5G2.bam
 $samtools view -q 255 G101_5G2.bam    #reference一共17个单倍型，将RNAseq所有唯一与17个单倍型比对上的序列，也就是只有与一个单倍型匹配的序列，与多个单倍型匹配的不提出，will give you the unique mapping reads#
 $grep AS:i:0 G101_5G2.sam > G101_5G2.fastq         #提取G101_5G2.sam文件中比对上的序列，然后以fastaq的格式输出。
