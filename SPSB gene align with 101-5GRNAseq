@@ -16,7 +16,7 @@ $samtools view -bS -1 G101_5G2.sam > G101_5G2.bam
 $samtools view -F 4 G101_5G2.bam | grep -v "XS:" | wc -l
 $samtools view -H G101_5G2.bam > header.sam
 $samtools view -F 4 G101_5G2.bam | grep -v "XS:" | cat header.sam - | \
-> > samtools view -b - > unique.bam
+> samtools view -b - > unique.bam
 $ rm header.sam
 $ samtools stats unique.bam > G101_5G2unique.txt             #也是获取唯一与17个单倍型比对上的序列，也就是只有与一个单倍型匹配的序列#
 
